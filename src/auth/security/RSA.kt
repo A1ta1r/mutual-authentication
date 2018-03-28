@@ -1,4 +1,4 @@
-package security
+package auth.security
 
 import java.math.BigInteger
 import java.security.SecureRandom
@@ -17,11 +17,11 @@ class RSA {
         return Pair(publicKey, privateKey)
     }
 
-    fun encrypt(plainText: String, publicKey: KeyRSA): BigInteger? {
-        return BigInteger(plainText.toByteArray()).modPow(publicKey.exponent, publicKey.modulus)
+    fun encrypt(plainText: ByteArray, publicKey: KeyRSA): BigInteger? {
+        return BigInteger(plainText).modPow(publicKey.exponent, publicKey.modulus)
     }
 
-    fun decrypt(cipherText: BigInteger, privateKey: KeyRSA): String? {
-        return String((cipherText).modPow(privateKey.exponent, privateKey.modulus).toByteArray())
+    fun decrypt(cipherText: BigInteger, privateKey: KeyRSA): ByteArray? {
+        return (cipherText).modPow(privateKey.exponent, privateKey.modulus).toByteArray()
     }
 }

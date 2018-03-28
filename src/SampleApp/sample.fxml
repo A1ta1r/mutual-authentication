@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane fx:id="grid" hgap="10" maxHeight="123" maxWidth="123" stylesheets="@styles.css" vgap="10"
+          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="SampleApp.Controller">
+    <GridPane hgap="32.0" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
+        <Label>Node ID</Label>
+        <TextField fx:id="txt_id" prefWidth="120.0" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+        <Label GridPane.columnIndex="1" GridPane.rowIndex="0">First Node</Label>
+        <ComboBox fx:id="box_firstNode" prefWidth="120.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <Label GridPane.columnIndex="2">Second Node</Label>
+        <ComboBox fx:id="box_secondNode" prefWidth="120.0" GridPane.columnIndex="2" GridPane.rowIndex="1"/>
+        <columnConstraints>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+            <ColumnConstraints/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints/>
+            <RowConstraints/>
+        </rowConstraints>
+    </GridPane>
+    <Label fx:id="lbl_messages" GridPane.columnIndex="0" GridPane.columnSpan="4" GridPane.rowIndex="1">Choose an
+        action:
+    </Label>
+    <Button fx:id="btn_create" onAction="#createNodeAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
+            GridPane.rowIndex="2" GridPane.vgrow="NEVER">Create Node
+    </Button>
+    <Button fx:id="btn_get" onAction="#getNodeAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
+            GridPane.rowIndex="3" GridPane.vgrow="NEVER">Update From Files
+    </Button>
+    <Button fx:id="btn_connect" onAction="#connectNodesAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
+            GridPane.rowIndex="4" GridPane.vgrow="NEVER">Connect Nodes
+    </Button>
+    <Button fx:id="btn_send" onAction="#SendMsgAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="5"
+            GridPane.vgrow="NEVER">Send Message
+    </Button>
+    <Button fx:id="btn_reset" onAction="#hardResetAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="6"
+            GridPane.vgrow="NEVER">Hard Reset
+    </Button>
+    <TextArea fx:id="txt_main" editable="false" prefHeight="Infinity" wrapText="true" GridPane.columnIndex="1"
+              GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.rowSpan="7" GridPane.vgrow="ALWAYS"/>
+
+    <columnConstraints>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+        <ColumnConstraints/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+        <RowConstraints/>
+    </rowConstraints>
+    <padding>
+        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0"/>
+    </padding>
+</GridPane>
