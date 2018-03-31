@@ -3,8 +3,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<GridPane fx:id="grid" hgap="10" maxHeight="123" maxWidth="123" stylesheets="@styles.css" vgap="10"
-          xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:id="grid" hgap="10" maxHeight="123" maxWidth="123" stylesheets="@styles.css"
+          vgap="10" xmlns="http://javafx.com/javafx/8.0.121"
           fx:controller="SampleApp.Controller">
     <GridPane hgap="32.0" vgap="4.0" GridPane.columnIndex="1" GridPane.rowIndex="0">
         <Label>Node ID</Label>
@@ -35,10 +35,12 @@
     <Button fx:id="btn_connect" onAction="#connectNodesAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
             GridPane.rowIndex="4" GridPane.vgrow="NEVER">Connect Nodes
     </Button>
-    <Button fx:id="btn_send" onAction="#SendMsgAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="5"
+    <Button fx:id="btn_send" onAction="#SendMsgAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
+            GridPane.rowIndex="5"
             GridPane.vgrow="NEVER">Send Message
     </Button>
-    <Button fx:id="btn_reset" onAction="#hardResetAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER" GridPane.rowIndex="6"
+    <Button fx:id="btn_reset" onAction="#hardResetAction" GridPane.columnIndex="0" GridPane.hgrow="NEVER"
+            GridPane.rowIndex="6"
             GridPane.vgrow="NEVER">Hard Reset
     </Button>
     <TextArea fx:id="txt_main" editable="false" prefHeight="Infinity" wrapText="true" GridPane.columnIndex="1"

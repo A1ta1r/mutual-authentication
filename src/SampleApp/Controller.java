@@ -46,17 +46,19 @@ public class Controller {
         File folder = new File("secret_data\\");
         File[] listOfFiles = folder.listFiles();
         ArrayList<String> ids = new ArrayList<>();
-        for (int i = 0; i < listOfFiles.length; i++) {
-            if (listOfFiles[i].isFile()) {
-                ids.add(listOfFiles[i].getName().split("\\.")[0]);
+        if (folder.isDirectory()) {
+            for (int i = 0; i < listOfFiles.length; i++) {
+                if (listOfFiles[i].isFile()) {
+                    ids.add(listOfFiles[i].getName().split("\\.")[0]);
+                }
             }
-        }
-        ArrayList<String> visited = new ArrayList<>();
-        for (int i = 0; i < ids.size(); i++) {
-            if (!visited.contains(ids.get(i))) {
-                nodeList.put(ids.get(i), repository.readNode(ids.get(i)));
-            } else {
-                visited.add(ids.get(i));
+            ArrayList<String> visited = new ArrayList<>();
+            for (int i = 0; i < ids.size(); i++) {
+                if (!visited.contains(ids.get(i))) {
+                    nodeList.put(ids.get(i), repository.readNode(ids.get(i)));
+                } else {
+                    visited.add(ids.get(i));
+                }
             }
         }
     }
@@ -78,7 +80,7 @@ public class Controller {
             appendText("\"Node Id\" field can not be empty");
         } else {
             Pair keys = rsa.generateKeyPair();
-            Node node = new Node(txt_id.getText(), (KeyRSA) keys.getFirst(), (KeyRSA) keys.getSecond(), new HashMap<String, String>());
+            Node node = new Node(txt_id.getText(), (KeyRSA) keys.getFirst(), (KeyRSA) keys.getSecond(), new HashMap<String, String>(), new NodeFileRepository());
             if (!repository.addNode(node)) {
                 appendText("Node with Id=" + txt_id.getText() + " already exists.");
             } else {

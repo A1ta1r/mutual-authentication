@@ -6,12 +6,11 @@ import auth.security.RSA
 import java.math.BigInteger
 import java.util.*
 
-class Node(val id: String, val publicKey: KeyRSA, val privateKey: KeyRSA, val connectedNodes: HashMap<String, String>) {
+class Node(val id: String, val publicKey: KeyRSA, val privateKey: KeyRSA, val connectedNodes: HashMap<String, String>, private val repo: NodeFileRepository = NodeFileRepository()) {
 
 
     private val rsa = RSA()
     private val aes = AES()
-    private val repo = NodeFileRepository()
     var commonSecretList = HashMap<String, ByteArray>()
         private set
     var messageList = HashMap<String, String>()

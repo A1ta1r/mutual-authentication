@@ -3,18 +3,15 @@ package auth
 import auth.security.KeyRSA
 import java.io.*
 
-class NodeFileRepository : NodeRepository {
-
-    private val dir = "secret_data\\"
-
+class NodeFileRepository(private val dir: String = "secret_data\\") : NodeRepository {
 
     override fun addNode(node: Node): Boolean {
         val names = getFileNames(node.id)
         val publicFile = File(names[0])
         val privateFile = File(names[1])
         val nodesFile = File(names[2])
-        if (!File("secret_data").isDirectory) {
-            File("secret_data").mkdir()
+        if (!File(dir).isDirectory) {
+            File(dir).mkdir()
         }
         return if (publicFile.exists() || privateFile.exists() || nodesFile.exists()) {
             println("Files for the Node with id=${node.id} already exist.")
@@ -30,7 +27,7 @@ class NodeFileRepository : NodeRepository {
         }
     }
 
-    override fun updateFiles(node: Node): Boolean {
+    override fun updateNode(node: Node): Boolean {
         if (getNodeFiles(node.id) == null) {
             println("Files for this Node do not exist. Nothing to update")
             return false
@@ -52,7 +49,7 @@ class NodeFileRepository : NodeRepository {
         }
     }
 
-    override fun getPrivateKey(id: String): KeyRSA {
+    private fun getPrivateKey(id: String): KeyRSA {
         val file = FileReader(getNodeFiles(id)!![1])
         val bufferedReader = BufferedReader(file)
         val private = bufferedReader.readLine()
@@ -61,7 +58,7 @@ class NodeFileRepository : NodeRepository {
         return KeyRSA(private)
     }
 
-    override fun setPrivateKey(id: String, key: KeyRSA) {
+    private fun setPrivateKey(id: String, key: KeyRSA) {
         val file = FileWriter(getNodeFiles(id)!![1])
         val bufferedWriter = BufferedWriter(file)
         bufferedWriter.write(key.toString())
@@ -70,16 +67,16 @@ class NodeFileRepository : NodeRepository {
     }
 
     override fun setNodes(id: String, nodes: HashMap<String, String>) {
-        val file = FileWriter(getNodeFiles(id)!![2])
-        val bufferedWriter = BufferedWriter(file)
+        val writer = FileWriter(getNodeFiles(id)!![2])
+        val bufferedWriter = BufferedWriter(writer)
         nodes.forEach {
             bufferedWriter.write("${it.key},${it.value}\n")
         }
         bufferedWriter.close()
-        file.close()
+        writer.close()
     }
 
-    override fun getPublicKey(id: String): KeyRSA {
+    private fun getPublicKey(id: String): KeyRSA {
         val file = FileReader(getNodeFiles(id)!![0])
         val bufferedReader = BufferedReader(file)
         val public = bufferedReader.readLine()
@@ -88,7 +85,7 @@ class NodeFileRepository : NodeRepository {
         return KeyRSA(public)
     }
 
-    override fun setPublicKey(id: String, key: KeyRSA) {
+    private fun setPublicKey(id: String, key: KeyRSA) {
         val file = FileWriter(getNodeFiles(id)!![0])
         val bufferedWriter = BufferedWriter(file)
         bufferedWriter.write(key.toString())
